@@ -45,11 +45,25 @@ function tournamentSchedule(players) {
 }
 
 function generateSchedule() {
-    let input = document.getElementById("players").value;
+    outputDiv.innerHTML = "";
 
-    if (!input) {
-        alert("Enter players!");
-        return;
+schedule.forEach((round, index) => {
+    let roundDiv = document.createElement("div");
+    roundDiv.className = "round";
+
+    let title = document.createElement("h3");
+    title.innerText = `Round ${index + 1}`;
+    roundDiv.appendChild(title);
+
+    round.forEach(match => {
+        let matchDiv = document.createElement("div");
+        matchDiv.className = "match";
+        matchDiv.innerText = match;
+        roundDiv.appendChild(matchDiv);
+    });
+
+    outputDiv.appendChild(roundDiv);
+});
     }
 
     let players = input.split(",").map(p => p.trim());
